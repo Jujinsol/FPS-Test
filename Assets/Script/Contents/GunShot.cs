@@ -32,6 +32,6 @@ public class GunShot : MonoBehaviour
         GameObject clone = GameObject.Find("Fire(Clone)");
         if (clone == null)
             return;
-        Destroy(clone, 0.2f);
+        Destroy(clone);
     }
 }
