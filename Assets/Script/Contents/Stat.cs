@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class Stat : MonoBehaviour
 {
-    PlayerStat _playerStat;
+    public bool IsDead = false;
 
     [SerializeField]
-    protected int _hp;
+    public int _hp;
     [SerializeField]
     protected int _maxhp;
     [SerializeField]
@@ -25,7 +25,11 @@ public class Stat : MonoBehaviour
         _attack = 5;
     }
 
-    public void OnHit()
+    private void Update()
     {
+        if (_hp <= 0)
+        {
+            IsDead = true;
+        }
     }
 }

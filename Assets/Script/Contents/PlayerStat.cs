@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,5 +10,10 @@ public class PlayerStat : Stat
         _hp = 200;
         _maxhp = 200;
         _attack = 20;
+    }
+
+    public void HitOnPlayer(Stat hitter)
+    {
+        Debug.Log(Attack);
     }
 }

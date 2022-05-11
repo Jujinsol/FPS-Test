@@ -12,7 +12,6 @@ public class MonsterController : MonoBehaviour {
 
 	Animation anim;
     Stat _stat;
-	PlayerStat _playerStat;
 
 	void Start () {
 		anim = GetComponent<Animation>();
@@ -20,7 +19,17 @@ public class MonsterController : MonoBehaviour {
 
     private void Update()
     {
+		DeadCheck();
+	}
 
+	void DeadCheck()
+    {
+		_stat = GetComponent<Stat>();
+		if (_stat.IsDead)
+        {
+			DeathAni();
+			Destroy(gameObject, 0.8f);
+		}
     }
 
     public void IdleAni (){
@@ -40,13 +49,7 @@ public class MonsterController : MonoBehaviour {
 	}
 
 	public void DeathAni (){
-		anim.CrossFade (DEATH);
+		anim.CrossFade (DEATH, 0.4f);
 	}
-
-    public void OnTriggerEnter(Collider other)
-    {
-		_stat = gameObject.GetComponent<Stat>();
-		_stat.OnHit();
-    }
 
 }

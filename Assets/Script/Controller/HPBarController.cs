@@ -17,7 +17,7 @@ public class HPBarController : MonoBehaviour
         Transform parent = transform.parent;
         transform.position = parent.position + Vector3.up * (transform.parent.GetComponent<BoxCollider>().bounds.size.y);
 
-        _stat = transform.parent.GetComponent<Stat>();
+        _stat = GetComponentInParent<Stat>();
         float ratio = (float)_stat.Hp / (float)_stat.MaxHp;
         SetValue(ratio);
     }

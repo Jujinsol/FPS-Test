@@ -4,27 +4,34 @@ using UnityEngine;
 
 public class GunShot : MonoBehaviour
 {
-    public Transform _firePos;
-    Animation anim;
+    public AudioClip shottingAudio;
+    public GameObject bullet;
+    public AnimationClip shootingAnim;
 
-    void Start()
-    {
-
-    }
-
-    void Update()
+    private void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            anim = GetComponent<Animation>();
-            Shooting();
-        }
+            Shoot();
     }
 
-    void Shooting()
+    void Shoot()
     {
-        anim.Play("FireAnim");
+        AudioSource source = GetComponent<AudioSource>();
+        source.volume = 0.1f;
+        source.PlayOneShot(shottingAudio);
+
+        Instantiate(bullet);
+        Animation shotAnim = bullet.GetComponentInChildren<Animation>();
+        shotAnim.Play();
+
+        Destroy();
     }
 
-
+    private void Destroy()
+    {
+        GameObject clone = GameObject.Find("Fire(Clone)");
+        if (clone == null)
+            return;
+        Destroy(clone, 0.2f);
+    }
 }
