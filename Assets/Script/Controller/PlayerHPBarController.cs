@@ -14,7 +14,7 @@ public class PlayerHPBarController : MonoBehaviour
 
     void Update()
     {
-        GameObject go = GameObject.Find("Player");
+        GameObject go = GameObject.FindGameObjectWithTag("Player");
         _playerStat = go.GetComponent<PlayerStat>();
         float ratio = (float)_playerStat.Hp / (float)_playerStat.MaxHp;
         SetValue(ratio);

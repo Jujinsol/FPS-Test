@@ -22,7 +22,7 @@ public class Crush : MonoBehaviour
         if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             _playerStat = GetComponentInParent<PlayerStat>();
-            GameObject go = GameObject.Find("Monster");
+            GameObject go = GameObject.FindGameObjectWithTag("monster");
 
             _stat = go.GetComponent<Stat>();
             _stat._hp -= _playerStat.Attack;
