@@ -24,13 +24,16 @@ public class FirstStageManager : MonoBehaviour
         {
             if (GameObject.FindGameObjectsWithTag("monster").Length < _monsterNum)
             {
-                Instantiate(MonPrefab, new Vector3(0, 0, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                GameObject go = Instantiate(MonPrefab, new Vector3(0, 0, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
+                go.name = MonPrefab.name;
             }
         }
     }
 
     void PlayerMake()
     {
-        Instantiate(PlayerPrefab, new Vector3(0, 0, -11), Quaternion.Euler(new Vector3(0, 0, 0)));
+        GameObject go = Instantiate(PlayerPrefab, new Vector3(0, 0, -11), Quaternion.Euler(new Vector3(0, 0, 0)));
+        go.name = PlayerPrefab.name;
+        Camera.main.gameObject.GetComponent<CameraController>().SetPlayer(go);
     }
 }

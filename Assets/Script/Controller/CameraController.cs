@@ -7,7 +7,14 @@ public class CameraController : MonoBehaviour
     public float turnSpeed = 1.0f;
     private float xRotate = 0.0f;
 
-    public GameObject PlayerPrefab;
+    [SerializeField]
+    GameObject _player;
+    public void SetPlayer(GameObject player) { _player = player; }
+
+    void Start()
+    {
+        _player = GameObject.FindGameObjectWithTag("Player");    
+    }
 
     void LateUpdate()
     {
@@ -24,10 +31,10 @@ public class CameraController : MonoBehaviour
         xRotate = Mathf.Clamp(xRotate + xRotateSize, -30, 80);
 
         transform.eulerAngles = new Vector3(xRotate, yRotate, 0);
-        PlayerPrefab.transform.eulerAngles = transform.eulerAngles;
+        _player.transform.eulerAngles = transform.eulerAngles;
     }
     void PlayerView()
     {
-        transform.position = PlayerPrefab.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
+        transform.position = _player.transform.position + new Vector3(0.0f, 0.5f, 0.0f);
     }
 }

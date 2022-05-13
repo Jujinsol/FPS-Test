@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class PlayerStat : Stat
 {
+    Stat _stat;
+
     private void Start()
     {
         _hp = 200;
@@ -12,8 +14,11 @@ public class PlayerStat : Stat
         _attack = 20;
     }
 
-    public void HitOnPlayer(Stat hitter)
+    public void PlayerAttack(Stat victim)
     {
-        Debug.Log(Attack);
+        victim._hp -= _attack;
+
+        if (victim._hp <= 0)
+            victim._hp = 0;
     }
 }

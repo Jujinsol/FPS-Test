@@ -6,7 +6,8 @@ public class GunShot : MonoBehaviour
 {
     public AudioClip shottingAudio;
     public GameObject bullet;
-    public AnimationClip shootingAnim;
+    public Transform FirePos;
+    public GameObject Player;
 
     private void Update()
     {
@@ -20,11 +21,12 @@ public class GunShot : MonoBehaviour
         source.volume = 0.1f;
         source.PlayOneShot(shottingAudio);
 
-        Instantiate(bullet);
-        Animation shotAnim = bullet.GetComponentInChildren<Animation>();
-        shotAnim.Play();
+        Vector3 _bulletPos = Player.transform.position + FirePos.transform.position;
 
-        Destroy();
+        Instantiate(bullet, _bulletPos, Player.transform.rotation);
+        Debug.Log(Player.transform.rotation);
+
+        //Destroy();
     }
 
     private void Destroy()

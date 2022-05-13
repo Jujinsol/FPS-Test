@@ -14,21 +14,18 @@ public class Crush : MonoBehaviour
 
     void Update()
     {
-        
+        //transform.Translate(Vector3.forward * 1f);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
-            _playerStat = GetComponentInParent<PlayerStat>();
             GameObject go = GameObject.FindGameObjectWithTag("monster");
-
             _stat = go.GetComponent<Stat>();
-            _stat._hp -= _playerStat.Attack;
+            _playerStat = gameObject.GetComponentInParent<PlayerStat>();
 
-            if (_stat.Hp <= 0)
-                _stat._hp = 0;
+            _playerStat.PlayerAttack(_stat);
         }
     }
 }
