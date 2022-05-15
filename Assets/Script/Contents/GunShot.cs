@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,9 +23,8 @@ public class GunShot : MonoBehaviour
         source.PlayOneShot(shottingAudio);
 
         Vector3 _bulletPos = Player.transform.position + FirePos.transform.position;
-
+        
         Instantiate(bullet, _bulletPos, Player.transform.rotation);
-        Debug.Log(Player.transform.rotation);
 
         //Destroy();
     }
