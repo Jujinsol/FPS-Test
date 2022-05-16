@@ -23,6 +23,7 @@ public class GunShot : MonoBehaviour
 
         GameObject _bullet = Instantiate(bulletFactory);
         _bullet.transform.position = FirePos.position;
+        _bullet.transform.forward = FirePos.forward;
 
         //Destroy();
     }

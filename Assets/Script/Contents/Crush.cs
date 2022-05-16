@@ -14,7 +14,7 @@ public class Crush : MonoBehaviour
     void Update()
     {
         GameObject _root = GameObject.FindGameObjectWithTag("Player");
-        transform.Translate(_root.GetComponent<Transform>().forward * 0.2f);
+        transform.Translate(_root.GetComponent<Transform>().forward * 0.2f, Space.World);
     }
 
     /*private void OnTriggerEnter(Collider other)
