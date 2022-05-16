@@ -6,7 +6,6 @@ using UnityEngine;
 public class GunShot : MonoBehaviour
 {
     public AudioClip shottingAudio;
-    public GameObject bullet;
     public GameObject bulletFactory;
     public Transform FirePos;
 
@@ -21,9 +20,6 @@ public class GunShot : MonoBehaviour
         AudioSource source = GetComponent<AudioSource>();
         source.volume = 0.1f;
         source.PlayOneShot(shottingAudio);
-
-        Transform _parent = gameObject.GetComponentInParent<Transform>();
-        Vector3 _bulletPos = _parent.transform.position + FirePos.transform.position;
 
         GameObject _bullet = Instantiate(bulletFactory);
         _bullet.transform.position = FirePos.position;

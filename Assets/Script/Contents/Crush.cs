@@ -9,16 +9,17 @@ public class Crush : MonoBehaviour
 
     void Start()
     {
-        
     }
 
     void Update()
     {
-        //transform.Translate(Vector3.forward * 1f);
+        GameObject _root = GameObject.FindGameObjectWithTag("Player");
+        transform.Translate(_root.GetComponent<Transform>().forward * 0.2f);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
+
         if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             GameObject go = GameObject.FindGameObjectWithTag("monster");
@@ -27,5 +28,5 @@ public class Crush : MonoBehaviour
 
             _playerStat.PlayerAttack(_stat);
         }
-    }
+    }*/
 }
