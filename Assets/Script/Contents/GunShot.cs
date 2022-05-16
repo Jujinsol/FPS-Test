@@ -7,8 +7,8 @@ public class GunShot : MonoBehaviour
 {
     public AudioClip shottingAudio;
     public GameObject bullet;
+    public GameObject bulletFactory;
     public Transform FirePos;
-    public GameObject Player;
 
     private void Update()
     {
@@ -22,9 +22,11 @@ public class GunShot : MonoBehaviour
         source.volume = 0.1f;
         source.PlayOneShot(shottingAudio);
 
-        Vector3 _bulletPos = Player.transform.position + FirePos.transform.position;
-        
-        Instantiate(bullet, _bulletPos, Player.transform.rotation);
+        Transform _parent = gameObject.GetComponentInParent<Transform>();
+        Vector3 _bulletPos = _parent.transform.position + FirePos.transform.position;
+
+        GameObject _bullet = Instantiate(bulletFactory);
+        _bullet.transform.position = FirePos.position;
 
         //Destroy();
     }

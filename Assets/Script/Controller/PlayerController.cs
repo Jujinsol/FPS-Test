@@ -6,7 +6,6 @@ public class PlayerController : MonoBehaviour
 {
     float _speed = 7.0f;
 
-
     void Start()
     {
         
@@ -22,6 +21,7 @@ public class PlayerController : MonoBehaviour
         dir.Normalize();
 
         transform.position += dir * _speed * Time.deltaTime;
+        Quaternion _playerRot = transform.rotation;
     }
 
 
