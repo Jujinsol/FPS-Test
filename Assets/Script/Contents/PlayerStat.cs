@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class PlayerStat : Stat
 {
-    Stat _stat;
-
     private void Start()
     {
         _hp = 200;

@@ -22,6 +22,7 @@ public class MonsterController : MonoBehaviour {
 	Animation anim;
     Stat _stat;
 	PlayerStat _playerStat;
+	MonsterAttack _attack;
 
 	void Start () {
 		anim = GetComponent<Animation>();
@@ -80,17 +81,6 @@ public class MonsterController : MonoBehaviour {
 
 	public void AttackAni (){
 		anim.CrossFade (ATTACK);
-
-		/*_stat = GetComponent<Stat>();
-		GameObject go = GameObject.Find("Player");
-		_playerStat = go.GetComponent<PlayerStat>();
-
-		while (_playerStat._hp > 0)
-		{
-			_playerStat._hp -= _stat.Attack;
-			if (_playerStat._hp <= 0)
-				_playerStat._hp = 0;
-		}*/
 	}
 
 	public void DamageAni (){
@@ -100,6 +90,21 @@ public class MonsterController : MonoBehaviour {
 	public void DeathAni (){
 		anim.CrossFade (DEATH, 0.4f);
 	}
-    #endregion
+	#endregion
 
+	private void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.layer == LayerMask.NameToLayer("player"))
+			StartCoroutine("Attack", 1.0f);
+	}
+
+	IEnumerator Attack(float time)
+	{
+		yield return new WaitForSeconds(time);
+
+		_playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
+		_stat = GameObject.Find("Monster").GetComponent<Stat>();
+
+		_stat.MonsterAttack(_playerStat);
+	}
 }

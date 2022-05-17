@@ -32,4 +32,12 @@ public class Stat : MonoBehaviour
             IsDead = true;
         }
     }
+
+    public void MonsterAttack(Stat victim)
+    {
+        victim._hp -= _attack;
+
+        if (victim._hp <= 0)
+            victim._hp = 0;
+    }
 }

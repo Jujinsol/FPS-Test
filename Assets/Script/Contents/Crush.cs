@@ -19,7 +19,6 @@ public class Crush : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-
         if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             GameObject go = GameObject.FindGameObjectWithTag("monster");
