@@ -23,7 +23,11 @@ public class GunShot : MonoBehaviour
 
         GameObject _bullet = Instantiate(bulletFactory);
         _bullet.transform.position = FirePos.position;
-        _bullet.transform.forward = FirePos.forward;
+
+        Transform Rot = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _bullet.transform.rotation = Rot.transform.rotation;
+
+        _bullet.transform.forward = Rot.forward;
 
         //Destroy();
     }

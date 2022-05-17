@@ -13,8 +13,8 @@ public class Crush : MonoBehaviour
 
     void Update()
     {
-        GameObject _root = GameObject.FindGameObjectWithTag("Player");
-        transform.Translate(_root.GetComponent<Transform>().forward * 0.2f, Space.World);
+        Transform _camera = GameObject.Find("Main Camera").transform;
+        transform.Translate(_camera.GetComponent<Transform>().forward * 0.2f, Space.World);
     }
 
     /*private void OnTriggerEnter(Collider other)
