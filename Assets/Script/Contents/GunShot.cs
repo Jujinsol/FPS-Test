@@ -13,10 +13,12 @@ public class GunShot : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
             Shoot();
+        StartCoroutine("Destroy", 1.0f);
     }
 
     void Shoot()
     {
+
         AudioSource source = GetComponent<AudioSource>();
         source.volume = 0.1f;
         source.PlayOneShot(shottingAudio);
@@ -29,14 +31,14 @@ public class GunShot : MonoBehaviour
 
         _bullet.transform.forward = Rot.forward;
 
-        //Destroy();
     }
 
-    private void Destroy()
+    IEnumerator Destroy(float time)
     {
         GameObject clone = GameObject.Find("Fire(Clone)");
         if (clone == null)
-            return;
+            yield return null;
+        yield return new WaitForSeconds(time);
         Destroy(clone);
     }
 }

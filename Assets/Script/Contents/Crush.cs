@@ -17,16 +17,16 @@ public class Crush : MonoBehaviour
         transform.Translate(_camera.GetComponent<Transform>().forward * 0.2f, Space.World);
     }
 
-    /*private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other)
     {
 
         if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
         {
             GameObject go = GameObject.FindGameObjectWithTag("monster");
             _stat = go.GetComponent<Stat>();
-            _playerStat = gameObject.GetComponentInParent<PlayerStat>();
+            _playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
 
             _playerStat.PlayerAttack(_stat);
         }
-    }*/
+    }
 }
