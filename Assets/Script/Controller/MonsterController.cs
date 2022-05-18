@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.SceneManagement;
 
 public class MonsterController : MonoBehaviour {
 
@@ -22,6 +23,7 @@ public class MonsterController : MonoBehaviour {
 	Animation anim;
     Stat _stat;
 	PlayerStat _playerStat;
+	BigMonStat _bigStat;
 
 	private float TimeLeft = 0.9f;
 	private float nextTime = 0.0f;
@@ -64,11 +66,23 @@ public class MonsterController : MonoBehaviour {
 
 	void DeadCheck()
     {
-		_stat = GetComponent<Stat>();
-		if (_stat.IsDead)
-        {
-			DeathAni();
-			Destroy(gameObject, 0.8f);
+		if (SceneManager.GetActiveScene().name == "FinalStage")
+		{
+			_bigStat = GameObject.Find("BigMonster").GetComponent<BigMonStat>();
+			if (_bigStat.IsDead)
+			{
+				DeathAni();
+				Destroy(gameObject, 0.8f);
+			}
+		}
+		else
+		{
+			_stat = GameObject.Find("Monster").GetComponent<Stat>();
+			if (_stat.IsDead)
+			{
+				DeathAni();
+				Destroy(gameObject, 0.8f);
+			}
 		}
     }
 
@@ -99,18 +113,19 @@ public class MonsterController : MonoBehaviour {
 	}
 	#endregion
 
-	private void OnTriggerEnter(Collider other)
-	{
-		if (other.gameObject.layer == LayerMask.NameToLayer("player"))
-		{
-		}
-	}
-
 	void Attack()
 	{
 		_playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
-		_stat = GameObject.Find("Monster").GetComponent<Stat>();
 
-		_stat.MonsterAttack(_playerStat);
+		if (SceneManager.GetActiveScene().name == "FinalStage")
+		{
+			_bigStat = GameObject.Find("BigMonster").GetComponent<BigMonStat>();
+			_bigStat.BigMonAttack(_playerStat);
+        }
+		else
+		{
+			_stat = GameObject.Find("Monster").GetComponent<Stat>();
+			_stat.MonsterAttack(_playerStat);
+		}
 	}
 }

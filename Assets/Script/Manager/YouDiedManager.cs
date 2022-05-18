@@ -5,9 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class YouDiedManager : MonoBehaviour
 {
-    public GameObject _play;
-    public GameObject _exit;
-
     void Start()
     {
         Cursor.visible = true;

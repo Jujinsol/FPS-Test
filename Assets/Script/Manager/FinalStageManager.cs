@@ -3,19 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class FirstStageManager : MonoBehaviour
+public class FinalStageManager : MonoBehaviour
 {
-    public GameObject MonPrefab;
     public GameObject PlayerPrefab;
+    public GameObject BigMonPrefab;
     int _monsterNum;
-    PlayerStat _playerStat;
 
     void Start()
     {
         PlayerMake();
-        MonsterMake(1);
-        _playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
-        _playerStat._hp = 200;
+        MonsterMake();
     }
 
     void Update()
@@ -23,10 +20,10 @@ public class FirstStageManager : MonoBehaviour
         NextStage();
     }
 
-    void MonsterMake(int num)
+    void MonsterMake()
     {
-        GameObject go = Instantiate(MonPrefab, new Vector3(0, 0, 0), Quaternion.Euler(new Vector3(0, 180, 0)));
-        go.name = MonPrefab.name;
+        GameObject go = Instantiate(BigMonPrefab, new Vector3(0, 0, -3), Quaternion.Euler(new Vector3(0, 180, 0)));
+        go.name = BigMonPrefab.name;
     }
 
     void PlayerMake()
@@ -35,12 +32,13 @@ public class FirstStageManager : MonoBehaviour
         go.name = PlayerPrefab.name;
         Camera.main.gameObject.GetComponent<CameraController>().SetPlayer(go);
     }
-
     void NextStage()
     {
         _monsterNum = GameObject.FindGameObjectsWithTag("monster").Length;
         if (_monsterNum == 0)
-            SceneManager.LoadScene("SecondStage");
+        {
+            SceneManager.LoadScene("YouWin");
+        }
         else
             return;
     }

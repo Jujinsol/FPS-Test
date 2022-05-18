@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Crush : MonoBehaviour
 {
-    Stat _stat;
     PlayerStat _playerStat;
+    Stat _stat;
+    BigMonStat _bigStat;
 
     void Start()
     {
@@ -17,14 +19,20 @@ public class Crush : MonoBehaviour
         transform.Translate(_camera.GetComponent<Transform>().forward * 0.2f, Space.World);
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("monster"))
-        {
-            GameObject go = GameObject.FindGameObjectWithTag("monster");
-            _stat = go.GetComponent<Stat>();
-            _playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
+        Destroy(gameObject);
+        //GameObject go = GameObject.FindGameObjectWithTag("monster");
+        _playerStat = GameObject.Find("Player").GetComponent<PlayerStat>();
 
+        if (SceneManager.GetActiveScene().name == "FinalStage")
+        {
+            _bigStat = GameObject.Find("BigMonster").GetComponent<BigMonStat>();
+            _playerStat.PlayerAttack(_bigStat);
+        }
+        else
+        {
+            _stat = GameObject.Find("Monster").GetComponent<Stat>();
             _playerStat.PlayerAttack(_stat);
         }
     }

@@ -2,10 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
 
-public class LoadManager : MonoBehaviour
+public class YouWinManager : MonoBehaviour
 {
+    void Start()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+    }
+
+    void Update()
+    {
+
+    }
     public void Play()
     {
         SceneManager.LoadScene("FirstStage");
