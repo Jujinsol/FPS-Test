@@ -28,9 +28,7 @@ public class Stat : MonoBehaviour
     private void Update()
     {
         if (_hp <= 0)
-        {
             IsDead = true;
-        }
     }
 
     public void MonsterAttack(Stat victim)
