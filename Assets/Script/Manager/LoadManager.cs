@@ -13,6 +13,6 @@ public class LoadManager : MonoBehaviour
 
     public void Exit()
     {
-        Application.Quit();
+        Application.Quit(); 
     }
 }
